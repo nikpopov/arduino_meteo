@@ -90,18 +90,19 @@ void setup() {
   lcd.backlight();
   lcd.setCursor(0, 0);
   // lcd.print("Date: ");
-  lcd.setCursor(0, 1);
-  lcd.print("Temperature: ");
-  lcd.setCursor(19, 1);
-  lcd.print("C");
-  lcd.setCursor(0, 2);
-  lcd.print("Humidity: ");
-  lcd.setCursor(19, 2);
-  lcd.print("%");
-  lcd.setCursor(0, 3);
-  lcd.print("Pressure: ");
-  lcd.setCursor(16, 3);
-  lcd.print("mmhg");
+  // lcd.setCursor(0, 1);
+  // lcd.print("Temperature: ");
+  // lcd.setCursor(19, 1);
+  // lcd.print("C");
+  // lcd.setCursor(0, 2);
+  // lcd.print("Humidity: ");
+  // lcd.setCursor(19, 2);
+  // lcd.print("%");
+  // lcd.setCursor(0, 3);
+  // lcd.print("Pressure: ");
+  // lcd.setCursor(16, 3);
+  // lcd.print("mmhg");
+  displayLabels();
 
   pinMode(BUTTON_EDIT_PIN, INPUT_PULLUP); // Initialize EDIT button and pull_up resistor
   pinMode(BUTTON_SAVE_PIN, INPUT_PULLUP); // Initialize SAVE button and pull_up resistor
@@ -114,11 +115,28 @@ void loop() {
   if (editing) {
     editDateTime();   // EDIT mode
   } else {
+    displayLabels();
     displaySensorData();
     displayDateTime();
   }
   handleBacklight();  // Handle LCD backlight for energy saving
   delay(200);
+}
+
+void displayLabels() {
+  lcd.clear();
+  lcd.setCursor(0, 1);
+  lcd.print("Temperature: ");
+  lcd.setCursor(19, 1);
+  lcd.print("C");
+  lcd.setCursor(0, 2);
+  lcd.print("Humidity: ");
+  lcd.setCursor(19, 2);
+  lcd.print("%");
+  lcd.setCursor(0, 3);
+  lcd.print("Pressure: ");
+  lcd.setCursor(16, 3);
+  lcd.print("mmhg");
 }
 
 void handleButtons() {
